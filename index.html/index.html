@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Animals</title>
+</head>
+
+<body>
+  <button id="dog-button">Dogs</button>
+  <div id="images">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    $("#dog-button").on("click", function() {
+
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=vpJ2Tpqnhv1LsVHQKbFhMbbY5Ypx9bvW";
+      
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+        .then(function(response) {
+
+          var imageUrl = response.data.image_original_url;
+
+          var dogImage = $("<img>");
+
+          dogImage.attr("src", imageUrl);
+          dogImage.attr("alt", "dog image");
+
+          $("#images").prepend(dogImage);
+        });
+    });
+  </script>
+</body>
+
+</html>
